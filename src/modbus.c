@@ -1186,6 +1186,7 @@ static int read_io_status(modbus_t *ctx, int function, int addr, int nb, uint8_t
     if (rc > 0) {
         int temp, bit;
         int pos = 0;
+		unsigned int i = 0;
         unsigned int offset;
         unsigned int offset_end;
 
@@ -1199,7 +1200,7 @@ static int read_io_status(modbus_t *ctx, int function, int addr, int nb, uint8_t
 
         offset = ctx->backend->header_length + 2;
         offset_end = offset + rc;
-        for (unsigned int i = offset; i < offset_end; i++) {
+        for (i = offset; i < offset_end; i++) {
             /* Shift reg hi_byte to temp */
             temp = rsp[i];
 
